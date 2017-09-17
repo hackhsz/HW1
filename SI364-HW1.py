@@ -1,3 +1,12 @@
+import unittest
+import requests
+import pdb
+import sys
+import json
+from flask import jsonify
+from flask import Flask
+
+
 ## HW 1
 ## SI 364 F17
 ## Due: September 19, 2017
@@ -21,6 +30,19 @@ app.debug = True
 @app.route('/')
 def hello_to_you():
     return 'Hello!'
+
+@app.route('/class')
+
+def welcome_page():
+    return "Welcome to SI 364!"
+
+@app.route('/movie/<moviename>')
+
+def search_movie(moviename):
+    string1 = 'https://itunes.apple.com/search?term='
+    itunes_results = requests.get(string1+moviename)
+    return itunes_results.text
+
 
 
 if __name__ == '__main__':
